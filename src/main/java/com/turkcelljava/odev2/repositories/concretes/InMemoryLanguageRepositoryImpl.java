@@ -87,10 +87,7 @@ public class InMemoryLanguageRepositoryImpl implements InMemoryLanguageRepositor
 
     @Override
     public boolean update(int id, String language) {
-        int languageId = findLanguageIdByName(language);
-        if (languageId == -1)
-            return false;
-        Language updatedLanguage = new Language(languageId, language);
+        Language updatedLanguage = new Language(id, language);
         for (int i = 0; i < languages.size(); i++) {
             if (languages.get(i).getId() == id) {
                 languages.set(i, updatedLanguage);

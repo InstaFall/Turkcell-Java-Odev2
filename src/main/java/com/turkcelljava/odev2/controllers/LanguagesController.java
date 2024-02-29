@@ -56,7 +56,7 @@ public class LanguagesController {
     public String putLanguage(@RequestBody Request language, @PathVariable("id") int id) {
         if (languageService.updateLanguage(id, language.getName())) {
             return "Updated language with id " + id;
-        } else return "Could not update the language!";
+        } else return "Could not update the language, duplicate entry!";
     }
 
     //Delete language
