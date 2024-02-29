@@ -30,7 +30,7 @@ public class LanguageServiceImpl implements LanguageService {
         // Checks
         for (Language language : inMemoryLanguageRepository.getAll()) {
             if (language.getId() == languageToAdd.getId() || //duplicate language
-            language.getName().equals(languageToAdd.getName())){
+                    language.getName().equals(languageToAdd.getName())) {
                 return null;
             }
         }
@@ -42,7 +42,7 @@ public class LanguageServiceImpl implements LanguageService {
     public Language add(String languageToAdd) {
         // Checks
         for (Language language : inMemoryLanguageRepository.getAll()) {
-            if ( language.getName().equals(languageToAdd)){
+            if (language.getName().equals(languageToAdd)) {
                 return null;
             }
         }
@@ -67,7 +67,7 @@ public class LanguageServiceImpl implements LanguageService {
     @Override
     public boolean updateLanguage(int languageId, String language) {
         for (Language language1 : inMemoryLanguageRepository.getAll()) {
-            if( language1.getName().equals(language))
+            if (language1.getName().equals(language))
                 return false;
         }
         return inMemoryLanguageRepository.update(languageId, language);

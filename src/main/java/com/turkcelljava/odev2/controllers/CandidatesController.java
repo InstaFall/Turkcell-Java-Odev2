@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/api/candidates")
 public class CandidatesController {
     CandidateService candidateService;
+
     public CandidatesController(CandidateService candidateService) {
         this.candidateService = candidateService;
     }
@@ -25,12 +26,11 @@ public class CandidatesController {
     //Add candidate
     // To do: Separate error message displayed if it cant add
     @PostMapping()
-    String add (@RequestBody Candidate candidate){
+    String add(@RequestBody Candidate candidate) {
         Candidate addedCandidate = candidateService.add(candidate);
-        if(addedCandidate == null) {
+        if (addedCandidate == null) {
             return "Duplicate entry or Empty Language List!"; // Solve this
-        }
-        else {
+        } else {
             return "Candidate added: " + addedCandidate.getFirstName() + " with languages " +
                     addedCandidate.getLanguageList().toString();
         }
@@ -45,10 +45,9 @@ public class CandidatesController {
     //Updating candidate
     @PutMapping("{id}")
     public String putCandidate(@RequestBody Candidate candidate, @PathVariable("id") int id) {
-        if(candidateService.updateCandidate(id, candidate)){
+        if (candidateService.updateCandidate(id, candidate)) {
             return "Updated candidate with id " + id;
-        }
-        else return "Could not update the candidate!";
+        } else return "Could not update the candidate!";
     }
 
     @GetMapping("{id}/languages")
@@ -61,8 +60,7 @@ public class CandidatesController {
     public String addLanguageToCandidate(@RequestBody Request language, @PathVariable("id") int id) {
         if (candidateService.addLanguage(id, language.getName())) {
             return "Added language " + language.getName() + " to the userId: " + id;
-        }
-        else return "Could not add language. Duplicate entry!";
+        } else return "Could not add language. Duplicate entry!";
     }
 
     //Delete language of candidate
@@ -75,9 +73,9 @@ public class CandidatesController {
     //Update language of candidate
     @PutMapping("{id}/languages/{languageId}")
     public String updateLanguageOfCandidate(@RequestBody Language language, @PathVariable("id") int id, @PathVariable("languageId") int languageId) {
-        if(!candidateService.updateLanguage(id, languageId, language)){
+        if (!candidateService.updateLanguage(id, languageId, language)) {
             return "Language already present in the list!";
         }
-        return "Updated the language of user id "+ id;
+        return "Updated the language of user id " + id;
     }
 }

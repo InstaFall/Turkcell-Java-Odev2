@@ -11,15 +11,16 @@ import java.util.List;
 @Repository
 public class InMemoryLanguageRepositoryImpl implements InMemoryLanguageRepository {
     List<Language> languages;
+
     public InMemoryLanguageRepositoryImpl() {
         // Add dummy languages to the list
         languages = new ArrayList<Language>();
-        languages.add(new Language(1,"C"));
-        languages.add(new Language(2,"C++"));
-        languages.add(new Language(3,"Java"));
-        languages.add(new Language(4,"C#"));
-        languages.add(new Language(5,"Python"));
-        languages.add(new Language(6,"Javascript"));
+        languages.add(new Language(1, "C"));
+        languages.add(new Language(2, "C++"));
+        languages.add(new Language(3, "Java"));
+        languages.add(new Language(4, "C#"));
+        languages.add(new Language(5, "Python"));
+        languages.add(new Language(6, "Javascript"));
     }
 
     @Override
@@ -33,8 +34,9 @@ public class InMemoryLanguageRepositoryImpl implements InMemoryLanguageRepositor
     }
 
     public int generateId() {
-        return languages.get(languages.size()-1).getId() + 1;
+        return languages.get(languages.size() - 1).getId() + 1;
     }
+
     @Override
     public Language add(String language) {
         Language addedLanguage = new Language(generateId(), language);
@@ -76,16 +78,17 @@ public class InMemoryLanguageRepositoryImpl implements InMemoryLanguageRepositor
 
     public int findLanguageIdByName(String name) {
         for (Language language : languages) {
-            if( language.getName().equals(name)){
+            if (language.getName().equals(name)) {
                 return language.getId();
             }
         }
         return -1;
     }
+
     @Override
     public boolean update(int id, String language) {
         int languageId = findLanguageIdByName(language);
-        if(languageId == -1)
+        if (languageId == -1)
             return false;
         Language updatedLanguage = new Language(languageId, language);
         for (int i = 0; i < languages.size(); i++) {

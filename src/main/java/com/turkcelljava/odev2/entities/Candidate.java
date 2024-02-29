@@ -71,21 +71,22 @@ public class Candidate {
         languageList.set(languageList.indexOf(languageToReplace), languageToPut);
     }
 
-    public void updateLanguage(int languageId, Language language){
+    public void updateLanguage(int languageId, Language language) {
         for (int i = 0; i < languageList.size(); i++) {
-            if(languageList.get(i).getId() == languageId) {
+            if (languageList.get(i).getId() == languageId) {
                 languageList.set(i, language);
                 break;
             }
         }
     }
-    public void removeLanguage(Language languageToRemove){
+
+    public void removeLanguage(Language languageToRemove) {
         languageList.remove(languageToRemove);
     }
 
-    public void removeLanguageById(int languageId){
+    public void removeLanguageById(int languageId) {
         for (int i = 0; i < languageList.size(); i++) {
-            if(languageList.get(i).getId() == languageId) {
+            if (languageList.get(i).getId() == languageId) {
                 languageList.remove(i);
                 break;
             }

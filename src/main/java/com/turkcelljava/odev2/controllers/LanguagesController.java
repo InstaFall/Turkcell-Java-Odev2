@@ -3,7 +3,6 @@ package com.turkcelljava.odev2.controllers;
 import com.turkcelljava.odev2.Request;
 import com.turkcelljava.odev2.business.abstracts.LanguageService;
 import com.turkcelljava.odev2.entities.Language;
-import com.turkcelljava.odev2.entities.Language;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +11,7 @@ import java.util.List;
 @RequestMapping("/api/languages")
 public class LanguagesController {
     LanguageService languageService;
+
     public LanguagesController(LanguageService languageService) {
         this.languageService = languageService;
     }
@@ -36,12 +36,11 @@ public class LanguagesController {
 
     // Add language by its name
     @PostMapping()
-    String add (@RequestBody Request language){
+    String add(@RequestBody Request language) {
         Language addedLanguage = languageService.add(language.getName());
-        if(addedLanguage == null) {
+        if (addedLanguage == null) {
             return "Duplicate entry";
-        }
-        else {
+        } else {
             return "Language added: " + addedLanguage.getName() + " with id " + addedLanguage.getId();
         }
     }
@@ -55,10 +54,9 @@ public class LanguagesController {
     //Updating language
     @PutMapping("{id}")
     public String putLanguage(@RequestBody Language language, @PathVariable("id") int id) {
-        if(languageService.updateLanguage(id, language)){
+        if (languageService.updateLanguage(id, language)) {
             return "Updated language with id " + id;
-        }
-        else return "Could not update the language!";
+        } else return "Could not update the language!";
     }
 
     //Delete language

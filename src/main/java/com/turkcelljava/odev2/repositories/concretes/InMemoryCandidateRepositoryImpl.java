@@ -22,10 +22,10 @@ public class InMemoryCandidateRepositoryImpl implements InMemoryCandidateReposit
         List<Language> list = (inMemoryLanguageRepository.getAll());
         candidateList = new ArrayList<Candidate>();
         // dummy candidates to begin with
-        candidateList.add(new Candidate(0,"Can","Akıllı", new ArrayList<>(Arrays.asList(list.get(1)))));
-        candidateList.add(new Candidate(1,"John","Doe", new ArrayList<>(Arrays.asList(list.get(0)))));
-        candidateList.add(new Candidate(2,"Buse","Deniz", new ArrayList<>(Arrays.asList(list.get(3)))));
-        candidateList.add(new Candidate(3,"Tolga","Yılmaz", new ArrayList<>(Arrays.asList(list.get(4)))));
+        candidateList.add(new Candidate(0, "Can", "Akıllı", new ArrayList<>(Arrays.asList(list.get(1)))));
+        candidateList.add(new Candidate(1, "John", "Doe", new ArrayList<>(Arrays.asList(list.get(0)))));
+        candidateList.add(new Candidate(2, "Buse", "Deniz", new ArrayList<>(Arrays.asList(list.get(3)))));
+        candidateList.add(new Candidate(3, "Tolga", "Yılmaz", new ArrayList<>(Arrays.asList(list.get(4)))));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class InMemoryCandidateRepositoryImpl implements InMemoryCandidateReposit
     @Override
     public Candidate getCandidateById(int id) {
         int index = -1;
-        for (int i = 0; i<candidateList.size(); i++) {
+        for (int i = 0; i < candidateList.size(); i++) {
             if (candidateList.get(i).getId() == id) {
                 index = i;
                 break;
@@ -85,7 +85,7 @@ public class InMemoryCandidateRepositoryImpl implements InMemoryCandidateReposit
     @Override
     public void addLanguageToCandidate(int candidateId, String language) {
         int languageId = inMemoryLanguageRepository.findLanguageIdByName(language);
-        if(languageId == -1)
+        if (languageId == -1)
             languageId = inMemoryLanguageRepository.generateId();
         getCandidateById(candidateId).addLanguage(new Language(languageId, language));
     }
@@ -114,7 +114,7 @@ public class InMemoryCandidateRepositoryImpl implements InMemoryCandidateReposit
     @Override
     public void updateLanguageOfCandidate(int candidateId, int languageIdToReplace, Language languageToPut) {
         for (Candidate candidate : candidateList) {
-            if (candidate.getId() == candidateId){
+            if (candidate.getId() == candidateId) {
                 candidate.updateLanguage(languageIdToReplace, languageToPut);
                 break;
             }

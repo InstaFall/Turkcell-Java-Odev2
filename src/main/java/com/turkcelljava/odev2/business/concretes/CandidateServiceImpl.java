@@ -34,11 +34,11 @@ public class CandidateServiceImpl implements CandidateService {
         boolean exists = false;
         for (Candidate candidate : inMemoryCandidateRepository.getAll()) {
             if (candidate.getId() == candidateToAdd.getId() ||
-                (   candidate.getFirstName().equals(candidateToAdd.getFirstName()) &&
-                    candidate.getLastName().equals(candidateToAdd.getLastName()))
+                    (candidate.getFirstName().equals(candidateToAdd.getFirstName()) &&
+                            candidate.getLastName().equals(candidateToAdd.getLastName()))
             ) return null;
         }
-            return inMemoryCandidateRepository.add(candidateToAdd);
+        return inMemoryCandidateRepository.add(candidateToAdd);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class CandidateServiceImpl implements CandidateService {
     public boolean addLanguage(int candidateId, String languageToAdd) {
         boolean exists = false;
         for (Language language : inMemoryCandidateRepository.getCandidateById(candidateId).getLanguageList()) {
-            if ( language.getName().equals(languageToAdd)) {
+            if (language.getName().equals(languageToAdd)) {
                 exists = true;
                 break;
             }
@@ -69,10 +69,9 @@ public class CandidateServiceImpl implements CandidateService {
         if (!exists) {
             // Add new language to languages in the database/memory
             inMemoryCandidateRepository.addLanguageToLanguages(languageToAdd);
-            inMemoryCandidateRepository.addLanguageToCandidate(candidateId,languageToAdd);
+            inMemoryCandidateRepository.addLanguageToCandidate(candidateId, languageToAdd);
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     // Language operations
@@ -81,18 +80,17 @@ public class CandidateServiceImpl implements CandidateService {
         boolean exists = false;
         for (Language language : inMemoryCandidateRepository.getCandidateById(candidateId).getLanguageList()) {
             if (
-                language.getId() == languageToAdd.getId() ||
-                language.getName().equals(languageToAdd.getName())
+                    language.getId() == languageToAdd.getId() ||
+                            language.getName().equals(languageToAdd.getName())
             ) {
                 exists = true;
                 break;
             }
         }
         if (!exists) {
-            inMemoryCandidateRepository.addLanguageToCandidate(candidateId,languageToAdd);
+            inMemoryCandidateRepository.addLanguageToCandidate(candidateId, languageToAdd);
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     @Override
@@ -108,9 +106,9 @@ public class CandidateServiceImpl implements CandidateService {
     @Override
     public boolean updateLanguage(int candidateId, int languageIdToReplace, Language languageToPut) {
         Candidate candidate = getCandidateById(candidateId);
-        for (Language language: candidate.getLanguageList()) {
-            if(language.getId() == languageToPut.getId() || language.getName().equals(languageToPut.getName()))
-        return false;
+        for (Language language : candidate.getLanguageList()) {
+            if (language.getId() == languageToPut.getId() || language.getName().equals(languageToPut.getName()))
+                return false;
         }
         inMemoryCandidateRepository.updateLanguageOfCandidate(candidateId, languageIdToReplace, languageToPut);
         return true;
