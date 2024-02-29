@@ -53,7 +53,7 @@ public class LanguagesController {
 
     //Updating language
     @PutMapping("{id}")
-    public String putLanguage(@RequestBody Language language, @PathVariable("id") int id) {
+    public String putLanguage(@RequestBody Request language, @PathVariable("id") int id) {
         if (languageService.updateLanguage(id, language.getName())) {
             return "Updated language with id " + id;
         } else return "Could not update the language!";
