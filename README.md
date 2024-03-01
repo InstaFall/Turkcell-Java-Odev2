@@ -2,7 +2,7 @@
 
 GYGY Java 2. Ödev
 
-Candidates and Languages entities are defined. API design:
+Candidate and Language entities are defined. API endpoints for both designed:
 
 ![](https://i.imgur.com/NZbTXnd.png)
 
