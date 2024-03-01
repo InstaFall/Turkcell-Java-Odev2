@@ -2,6 +2,6 @@
 
 GYGY Java 2. Ödev
 
-Candidates and Languages are separated. API design:
+Candidates and Languages entities are defined. API design:
 
 ![](https://i.imgur.com/NZbTXnd.png)
