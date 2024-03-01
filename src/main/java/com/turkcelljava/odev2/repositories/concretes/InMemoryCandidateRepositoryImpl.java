@@ -73,11 +73,6 @@ public class InMemoryCandidateRepositoryImpl implements InMemoryCandidateReposit
     }
 
     @Override
-    public void addLanguageToLanguages(String language) {
-        inMemoryLanguageRepository.add(language);
-    }
-
-    @Override
     public void addLanguageToCandidate(int candidateId, Language language) {
         getCandidateById(candidateId).addLanguage(language);
     }

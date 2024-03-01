@@ -4,6 +4,7 @@ import com.turkcelljava.odev2.business.abstracts.CandidateService;
 import com.turkcelljava.odev2.entities.Candidate;
 import com.turkcelljava.odev2.entities.Language;
 import com.turkcelljava.odev2.repositories.abstracts.InMemoryCandidateRepository;
+import com.turkcelljava.odev2.repositories.abstracts.InMemoryLanguageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +12,11 @@ import java.util.List;
 @Service
 public class CandidateServiceImpl implements CandidateService {
     InMemoryCandidateRepository inMemoryCandidateRepository;
+    InMemoryLanguageRepository inMemoryLanguageRepository;
 
-    public CandidateServiceImpl(InMemoryCandidateRepository inMemoryCandidateRepository) {
+    public CandidateServiceImpl(InMemoryCandidateRepository inMemoryCandidateRepository, InMemoryLanguageRepository inMemoryLanguageRepository) {
         this.inMemoryCandidateRepository = inMemoryCandidateRepository;
+        this.inMemoryLanguageRepository = inMemoryLanguageRepository;
     }
 
     @Override
@@ -68,7 +71,7 @@ public class CandidateServiceImpl implements CandidateService {
         }
         if (!exists) {
             // Add new language to languages in the database/memory
-            inMemoryCandidateRepository.addLanguageToLanguages(languageToAdd);
+            inMemoryLanguageRepository.add(languageToAdd);
             inMemoryCandidateRepository.addLanguageToCandidate(candidateId, languageToAdd);
             return true;
         } else return false;

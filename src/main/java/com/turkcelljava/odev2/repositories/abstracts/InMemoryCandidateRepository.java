@@ -19,8 +19,6 @@ public interface InMemoryCandidateRepository {
     boolean update(int id, Candidate candidate);
 
     //Language related operations on candidates
-    void addLanguageToLanguages(String language);
-
     void addLanguageToCandidate(int candidateId, Language language);
 
     void addLanguageToCandidate(int candidateId, String language);
